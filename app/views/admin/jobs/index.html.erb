@@ -1,0 +1,21 @@
+<div class="pull-left">
+  <%= link_to ("月老是我", new_admin_job_pathm :class => "btn btn-info") %>
+   </div>
+
+<br></br>
+<table class="table table-bordered">
+  <%= @job.each do  |job| %>
+  <tr>
+    <td>
+      <%= link_to(job.title, admin_job_path(job)) %>
+    </td>
+    <td>
+      <%= link_to("編輯", edit_admin_job_path(job))%>
+      <%= link_to("刪除", admin_job_path(job), :method => :delete, :data => {:confirm => "Are you sure?"}) %>
+     </td>
+     <td>
+       <%= job.created_at%>
+     </td>
+   </tr>
+   <% end %>
+</table>
