@@ -1,6 +1,7 @@
 class Admin::JobsController < ApplicationController
 before_action :authenticate_user!, only: [:new, :edit, :update,:destroy, :create]
 before_action :require_is_admin
+layout "admin"
 def index
 @jobs= Job.all
 end
@@ -47,6 +48,18 @@ def require_is_admin
     flash[:alert] = 'you are not 月老'
    redirect_to root_path
    end
+end
+
+def publish
+@job =Job.find(params[:id])
+@job.publish!
+redirect_to :back
+end
+
+def hide
+  @job= Job.find(params[:id])
+@job.hide!
+  redirect_to :back
 end
 
 private
