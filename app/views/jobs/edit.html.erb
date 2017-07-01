@@ -1,7 +1,9 @@
-<h1> 編輯工作 </h1>
-  <%= simple_form_for @job do |f| %>
-  <%=f.input :title %>
-  <%=f.input :description %>
-
-  <%=f.submit "Submit" %>
-  <% end %>
+<h1> 編輯個人檔案 </h1>
+<%= simple_form_for @job do |f| %>
+<%= f.input :title, :label => "暱稱" %>
+<%= f.input :description, :label => "費洛蒙描述" %>
+<%= f.input :age_lower_limit, :label => "年齡下限" %>
+<%= f.input :age_upper_limit, :label => "年齡上限" %>
+<%= f.input :contact_email, :label => "聯絡電話和email" %>
+<%=  f.submit "提交" %>
+<% end %>
