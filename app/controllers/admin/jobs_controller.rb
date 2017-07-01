@@ -52,6 +52,6 @@ end
 private
 
 def jobs_params
-  params.require(:job).permit(:title, :description, :age_upper_limit, :age_lower_limit, :contact_email)
+  params.require(:job).permit(:title, :description, :age_upper_limit, :age_lower_limit, :contact_email, :is_hidden)
 end
 end
