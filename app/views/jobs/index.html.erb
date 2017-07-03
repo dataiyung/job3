@@ -2,19 +2,52 @@
   <%= link_to("新增紅娘", new_job_path, :class => "btn btn-default") %>
 
 </div>
+<div class="dropdown clearfix pull-right">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      排序
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+        <li>
+          <%= link_to("按照年齡下限排序", jobs_path(:order => "by_lower_limit")) %>
+        </li>
+        <li>
+            <%= link_to("按照年齡上限排序", jobs_path(:order => "by_upper_limit")) %>
+
+        </li>
+        <li>
+          <%= link_to("按照發表时间排序", jobs_path ) %>
+
+        </li>
+    </ul>
+</div>
 <table class="table table-bordered">
+  <thead>
+    <tr>
+       <td>
+         紅娘</td>
+         <td>年齡下限 </td>
+         <td>年齡上限 </td>
+         <td>刊登時間</td>
+    </tr>
+
+  </thead>
+<tbody>
   <% @jobs.each do |job| %>
   <tr>
   <td>
     <%= link_to(job.title, job_path(job)) %>
   </td>
   <td>
-    <%=link_to("編輯",edit_job_path(job)) %> |
-    <%=link_to("刪除", job_path(job), :method => :delete, :data => {:confirm =>"Are you sure?"})%>
+      <%= job.age_lower_limit %>
+    </td>
+    <td>
+      <%= job.age_upper_limit %>
   </td>
   <td>
       <%= job.created_at %>
   </td>
   </tr>
   <% end %>
+  </tbody>
 </table>
