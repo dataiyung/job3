@@ -4,6 +4,29 @@
 
 <br><br>
 <table class="table table-bordered">
+  <thead>
+    <tr>
+        <td>
+            孤男寡女的數量
+          </td>
+
+          <td>
+            收到資料數量
+          </td>
+          <td>
+            年齡下限
+          </td>
+          <td>
+            年齡上限
+          </td>
+          <td>
+            管理選項
+          </td>
+           <td>
+            刊登時間
+          </td>
+    </tr>
+  </thead>
   <% @jobs.each do  |job| %>
   <tr>
     <td>
@@ -11,10 +34,14 @@
 
       <%= link_to(job.title, admin_job_path(job)) %>
     </td>
+    <td> <%=link_to(job.resumes.count, admin_job_resumes_path(job)) %></td>
+    <td> <%=job.age_lower_limit %></td>
+    <td> <%=job.age_upper_limit %></td>
     <td>
       <%= link_to("編輯", edit_admin_job_path(job))%>
+       |
       <%= link_to("刪除", admin_job_path(job), :method => :delete, :data => {:confirm => "Are you sure?"}) %>
-
+       |
       <% if job.is_hidden %>
       <%= link_to("公開", publish_admin_job_path(job),:method => :post, :class => "btn btn-xs btn-default")%>
       <% else %>
